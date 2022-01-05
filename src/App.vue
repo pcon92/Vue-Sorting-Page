@@ -1,16 +1,15 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <bubble-sort></bubble-sort>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import BubbleSort from './components/BubbleSort.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    BubbleSort,
+  },
 }
 </script>
 
@@ -22,5 +21,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  width: 500px;
 }
 </style>
