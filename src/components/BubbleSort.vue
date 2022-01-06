@@ -20,9 +20,15 @@
 <script>
 export default {
   name: 'BubbleSort',
+    props: {
+        numbersProp: {
+            type: Array,
+            required: true
+        }
+    },
     data() {
         return {
-            numbers: [4, 2, 6, 8, 2, 9, 1, 2]
+            numbers: this.numbersProp
         };
     },
     methods: {

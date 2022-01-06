@@ -1,5 +1,6 @@
 <template>
-  <bubble-sort></bubble-sort>
+  <bubble-sort
+    v-bind:numbersProp="[4, 2, 6, 8, 2, 9, 1, 2]"></bubble-sort>
 </template>
 
 <script>
