@@ -1,5 +1,5 @@
 <template>
-	<bubble-sort :numbersProp="startingNumbers"></bubble-sort>
+	<bubble-sort :startingNumbers="startingNumbers"></bubble-sort>
 </template>
 
 <script>

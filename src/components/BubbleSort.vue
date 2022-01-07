@@ -12,7 +12,7 @@
 	</div>
 	<div>
 		<button @click="startBubbleSort">Bubble Sort</button>
-		<button>Replay</button>
+		<button @click="resetNumbers">Reset</button>
 	</div>
 </template>
 
@@ -20,14 +20,15 @@
 export default {
 	name: "BubbleSort",
 	props: {
-		numbersProp: {
+		startingNumbers: {
 			type: Array,
 			required: true,
 		},
 	},
 	data() {
 		return {
-			numbers: this.numbersProp,
+			// JSON methods used to 'deep copy' array allowing reset to prop values
+			numbers: JSON.parse(JSON.stringify(this.startingNumbers)),
 		};
 	},
 	methods: {
@@ -47,6 +48,9 @@ export default {
 				}
 			} while (madeSwap);
 		},
+		resetNumbers() {
+			this.numbers = JSON.parse(JSON.stringify(this.startingNumbers));
+		}
 	},
 };
 </script>
