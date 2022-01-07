@@ -6,9 +6,11 @@
 		<li>Swaps them if they are in wrong order</li>
 	</ul>
 	<div id="bubble-sort-numbers">
-		<li v-for="(number, index) in numbers" class="number-div" :key="index">
-			{{ number }}
-		</li>
+		<transition-group name="number-list">
+			<li v-for="number in numbers" class="number-div" :key="number">
+				{{ number }}
+			</li>
+		</transition-group>
 	</div>
 	<div>
 		<button @click="startBubbleSort">Bubble Sort</button>
@@ -43,14 +45,14 @@ export default {
 						this.numbers[i] = holdingValue;
 						madeSwap = true;
 						// from top answer https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
-						await new Promise((r) => setTimeout(r, 250));
+						await new Promise((r) => setTimeout(r, 1100));
 					}
 				}
 			} while (madeSwap);
 		},
 		resetNumbers() {
 			this.numbers = JSON.parse(JSON.stringify(this.startingNumbers));
-		}
+		},
 	},
 };
 </script>
@@ -63,12 +65,17 @@ export default {
 	border: 3px solid black;
 }
 .number-div {
-	height: 50px;
 	width: 50px;
 	list-style: none;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	border: 1px dotted rgba(0, 0, 0, 0.3);
+	background-color: white;
+	transition-property: background-color;
+}
+.number-list-move {
+	transition: all 1s ease-in-out;
+	background-color: red;
 }
 </style>
