@@ -7,8 +7,8 @@
 	</ul>
 	<div id="bubble-sort-numbers">
 		<transition-group name="number-list">
-			<li v-for="number in numbers" class="number-div" :key="number">
-				{{ number }}
+			<li v-for="number in numbers" class="number-div" :key="number.id">
+				{{ number.value }}
 			</li>
 		</transition-group>
 	</div>
@@ -39,7 +39,7 @@ export default {
 			do {
 				madeSwap = false;
 				for (let i = 0; i < this.numbers.length; i++) {
-					if (this.numbers[i + 1] < this.numbers[i]) {
+					if (this.numbers[i + 1]?.value < this.numbers[i].value) {
 						const holdingValue = this.numbers[i + 1];
 						this.numbers[i + 1] = this.numbers[i];
 						this.numbers[i] = holdingValue;
@@ -76,6 +76,6 @@ export default {
 }
 .number-list-move {
 	transition: all 1s ease-in-out;
-	background-color: red;
+	background-color: rgba(255, 0, 0, 0.3);
 }
 </style>

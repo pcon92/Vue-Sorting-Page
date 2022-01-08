@@ -12,7 +12,16 @@ export default {
 	},
 	data() {
 		return {
-			startingNumbers: [4, 2, 6, 8, 2, 9, 1, 2],
+			startingNumbers: [
+				{ value: 4, id: Math.random() * 999 },
+				{ value: 2, id: Math.random() * 999 },
+				{ value: 6, id: Math.random() * 999 },
+				{ value: 8, id: Math.random() * 999 },
+				{ value: 2, id: Math.random() * 999 },
+				{ value: 9, id: Math.random() * 999 },
+				{ value: 1, id: Math.random() * 999 },
+				{ value: 3, id: Math.random() * 999 },
+			],
 		};
 	},
 	methods: {},
