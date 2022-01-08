@@ -1,0 +1,9 @@
+
+/* Martel Sans from google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Martel+Sans&display=swap');
+
+:root {
+    --font-family: 'Martel Sans', sans-serif;
+    --light-red: rgba(255, 0, 0, 0.3);
+    --light-black: rgba(0, 0, 0, 0.3);
+  }

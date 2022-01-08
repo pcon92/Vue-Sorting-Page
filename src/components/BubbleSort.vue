@@ -1,20 +1,42 @@
 <template>
-	<h2>Bubble Sort</h2>
-	<ul>
-		<li>Steps through list</li>
-		<li>Compares adjacent elements</li>
-		<li>Swaps them if they are in wrong order</li>
-	</ul>
-	<div id="bubble-sort-numbers">
-		<transition-group name="number-list">
-			<li v-for="number in numbers" class="number-div" :key="number.id">
-				{{ number.value }}
+	<div id="outer-container">
+		<h1 id="heading">Bubble Sort</h1>
+		<ul id="description">
+			<li class="description-item">Steps through list</li>
+			<li class="description-item">Compares adjacent elements</li>
+			<li class="description-item">
+				Swaps them if they are in wrong order
 			</li>
-		</transition-group>
-	</div>
-	<div>
-		<button @click="startBubbleSort">Bubble Sort</button>
-		<button @click="resetNumbers">Reset</button>
+		</ul>
+		<div id="bubble-sort-numbers">
+			<transition-group name="number-list">
+				<li
+					v-for="number in numbers"
+					class="number-div"
+					:key="number.id"
+				>
+					{{ number.value }}
+				</li>
+			</transition-group>
+		</div>
+		<div>
+			<button
+				type="button"
+				class="btn"
+				:disabled="btnPressed || isSorted"
+				@click="startBubbleSort"
+			>
+				Bubble Sort
+			</button>
+			<button
+				type="button"
+				class="btn"
+				:disabled="btnPressed || !isSorted"
+				@click="resetNumbers"
+			>
+				Reset
+			</button>
+		</div>
 	</div>
 </template>
 
@@ -31,11 +53,14 @@ export default {
 		return {
 			// JSON methods used to 'deep copy' array allowing reset to prop values
 			numbers: JSON.parse(JSON.stringify(this.startingNumbers)),
+			btnPressed: false,
+			isSorted: false,
 		};
 	},
 	methods: {
 		async startBubbleSort() {
 			let madeSwap;
+			this.btnPressed = true;
 			do {
 				madeSwap = false;
 				for (let i = 0; i < this.numbers.length; i++) {
@@ -49,9 +74,12 @@ export default {
 					}
 				}
 			} while (madeSwap);
+			this.btnPressed = false;
+			this.isSorted = true;
 		},
 		resetNumbers() {
 			this.numbers = JSON.parse(JSON.stringify(this.startingNumbers));
+			this.isSorted = false;
 		},
 	},
 };
@@ -59,6 +87,26 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import "../assets/styles/variables.css";
+
+#outer-container {
+	height: 300px;
+	width: 500px;
+	border: 1px solid black;
+	box-shadow: 3px 3px 10px var(--light-black);
+	padding: 10px;
+	border-radius: 5px;
+	text-align: center;
+}
+#heading {
+	text-decoration: underline;
+}
+#description {
+	text-align: left;
+}
+.description-item {
+	font-family: var(--font-family);
+}
 #bubble-sort-numbers {
 	display: flex;
 	height: 50px;
@@ -70,12 +118,18 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border: 1px dotted rgba(0, 0, 0, 0.3);
+	border: 1px dotted var(--light-black);
 	background-color: white;
 	transition-property: background-color;
 }
 .number-list-move {
 	transition: all 1s ease-in-out;
-	background-color: rgba(255, 0, 0, 0.3);
+	background-color: var(--light-red);
+}
+.btn {
+	height: 30px;
+	width: 100px;
+	margin: 10px;
+	border-radius: 5px;
 }
 </style>
