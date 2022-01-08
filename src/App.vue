@@ -13,14 +13,14 @@ export default {
 	data() {
 		return {
 			startingNumbers: [
-				{ value: 4, id: Math.random() * 999 },
-				{ value: 2, id: Math.random() * 999 },
-				{ value: 6, id: Math.random() * 999 },
-				{ value: 8, id: Math.random() * 999 },
-				{ value: 2, id: Math.random() * 999 },
-				{ value: 9, id: Math.random() * 999 },
-				{ value: 1, id: Math.random() * 999 },
-				{ value: 3, id: Math.random() * 999 },
+				{ value: 4, id: Math.random() * 999, isFocused: false },
+				{ value: 2, id: Math.random() * 999, isFocused: false },
+				{ value: 6, id: Math.random() * 999, isFocused: false },
+				{ value: 8, id: Math.random() * 999, isFocused: false },
+				{ value: 2, id: Math.random() * 999, isFocused: false },
+				{ value: 9, id: Math.random() * 999, isFocused: false },
+				{ value: 1, id: Math.random() * 999, isFocused: false },
+				{ value: 3, id: Math.random() * 999, isFocused: false },
 			],
 		};
 	},

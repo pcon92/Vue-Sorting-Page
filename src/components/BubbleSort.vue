@@ -12,7 +12,9 @@
 			<transition-group :name="changeAnimationSpeed">
 				<li
 					v-for="number in numbers"
-					class="number-div"
+					:class="
+						number.isFocused ? 'number-div-focused' : 'number-div'
+					"
 					:key="number.id"
 				>
 					{{ number.value }}
@@ -97,6 +99,14 @@ export default {
 			do {
 				madeSwap = false;
 				for (let i = 0; i < this.numbers.length; i++) {
+					// sets focused to show where program is looking for search
+					this.numbers[i].isFocused = true;
+					if (this.numbers[i + 1]?.isFocused === false) {
+						this.numbers[i + 1].isFocused = true;
+					}
+					await new Promise((r) => setTimeout(r, 300 / this.speed));
+
+					// perform swap of adjacent numbers
 					if (this.numbers[i + 1]?.value < this.numbers[i].value) {
 						const holdingValue = this.numbers[i + 1];
 						this.numbers[i + 1] = this.numbers[i];
@@ -108,6 +118,7 @@ export default {
 							setTimeout(r, 1100 / this.speed)
 						);
 					}
+					this.numbers[i].isFocused = false;
 				}
 				if (madeSwap) {
 					this.iterations++;
@@ -166,15 +177,18 @@ export default {
 	border: 3px solid black;
 	margin: auto;
 }
-.number-div {
+.number-div,
+.number-div-focused {
 	list-style: none;
 	display: flex;
 	flex: 1;
 	justify-content: center;
 	align-items: center;
 	border: 1px dotted var(--light-black);
-	background-color: white;
-	transition-property: background-color;
+}
+.number-div-focused {
+	font-size: 1.3rem;
+	background-color: var(--light-grey);
 }
 .number-list-medium-move {
 	transition: all 1s ease-in-out;
