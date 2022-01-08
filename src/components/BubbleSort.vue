@@ -9,7 +9,7 @@
 			</li>
 		</ul>
 		<div id="bubble-sort-numbers">
-			<transition-group :name="speedChanged">
+			<transition-group :name="changeAnimationSpeed">
 				<li
 					v-for="number in numbers"
 					class="number-div"
@@ -23,7 +23,7 @@
 			<div id="stats">
 				<p>Iterations: {{ iterations }}</p>
 				<p>Number of Swaps: {{ numberOfSwaps }}</p>
-				<p>Speed: {{ speed === 1 ? 'Medium' : speed === 1.5 ? 'Fast' : 'Slow' }}</p>
+				<p>Speed: {{ displayCurrentSpeed }}</p>
 			</div>
 			<button
 				type="button"
@@ -74,9 +74,20 @@ export default {
 		};
 	},
 	computed: {
-		speedChanged() {
-			return this.speed === 1 ? 'number-list-medium' : this.speed === 1.5 ? 'number-list-fast' : 'number-list-slow';
-		}
+		changeAnimationSpeed() {
+			return this.speed === 1
+				? "number-list-medium"
+				: this.speed === 4
+				? "number-list-fast"
+				: "number-list-slow";
+		},
+		displayCurrentSpeed() {
+			return this.speed === 1
+				? "Medium"
+				: this.speed === 4
+				? "Fast"
+				: "Slow";
+		},
 	},
 	methods: {
 		async startBubbleSort() {
@@ -93,7 +104,9 @@ export default {
 						madeSwap = true;
 						this.numberOfSwaps++;
 						// from top answer https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
-						await new Promise((r) => setTimeout(r, 1100/this.speed));
+						await new Promise((r) =>
+							setTimeout(r, 1100 / this.speed)
+						);
 					}
 				}
 				if (madeSwap) {
@@ -103,19 +116,21 @@ export default {
 			this.btnPressed = false;
 			this.isSorted = true;
 		},
-		resetNumbers() {
+		async resetNumbers() {
 			this.numbers = JSON.parse(JSON.stringify(this.startingNumbers));
+			// so buttons aren't pressed until reset complete
+			await new Promise((r) => setTimeout(r, 1100 / this.speed));
 			this.isSorted = false;
 			this.iterations = 0;
 			this.numberOfSwaps = 0;
 		},
 		changeSpeed() {
 			if (this.speed === 0.5) {
-				return this.speed = 1;
+				return (this.speed = 1);
 			} else if (this.speed === 1) {
-				return this.speed = 1.5;
+				return (this.speed = 4);
 			} else {
-				return this.speed = 0.5;
+				return (this.speed = 0.5);
 			}
 		},
 	},
@@ -166,11 +181,11 @@ export default {
 	background-color: var(--light-red);
 }
 .number-list-slow-move {
-	transition: all 1.5s ease-in-out;
+	transition: all 2s ease-in-out;
 	background-color: var(--light-red);
 }
 .number-list-fast-move {
-	transition: all 0.5s ease-in-out;
+	transition: all 0.25s ease-in-out;
 	background-color: var(--light-red);
 }
 #stats {
@@ -189,5 +204,6 @@ export default {
 }
 .btn:disabled {
 	cursor: not-allowed;
+	transform: scale(1);
 }
 </style>
