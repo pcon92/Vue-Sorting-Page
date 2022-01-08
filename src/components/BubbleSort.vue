@@ -9,7 +9,7 @@
 			</li>
 		</ul>
 		<div id="bubble-sort-numbers">
-			<transition-group name="number-list">
+			<transition-group :name="speedChanged">
 				<li
 					v-for="number in numbers"
 					class="number-div"
@@ -23,6 +23,7 @@
 			<div id="stats">
 				<p>Iterations: {{ iterations }}</p>
 				<p>Number of Swaps: {{ numberOfSwaps }}</p>
+				<p>Speed: {{ speed === 1 ? 'Medium' : speed === 1.5 ? 'Fast' : 'Slow' }}</p>
 			</div>
 			<button
 				type="button"
@@ -39,6 +40,14 @@
 				@click="resetNumbers"
 			>
 				Reset
+			</button>
+			<button
+				type="button"
+				class="btn"
+				:disabled="btnPressed || isSorted"
+				@click="changeSpeed"
+			>
+				Change Speed
 			</button>
 		</div>
 	</div>
@@ -61,7 +70,13 @@ export default {
 			numberOfSwaps: 0,
 			btnPressed: false,
 			isSorted: false,
+			speed: 1,
 		};
+	},
+	computed: {
+		speedChanged() {
+			return this.speed === 1 ? 'number-list-medium' : this.speed === 1.5 ? 'number-list-fast' : 'number-list-slow';
+		}
 	},
 	methods: {
 		async startBubbleSort() {
@@ -78,7 +93,7 @@ export default {
 						madeSwap = true;
 						this.numberOfSwaps++;
 						// from top answer https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
-						await new Promise((r) => setTimeout(r, 1100));
+						await new Promise((r) => setTimeout(r, 1100/this.speed));
 					}
 				}
 				if (madeSwap) {
@@ -92,6 +107,16 @@ export default {
 			this.numbers = JSON.parse(JSON.stringify(this.startingNumbers));
 			this.isSorted = false;
 			this.iterations = 0;
+			this.numberOfSwaps = 0;
+		},
+		changeSpeed() {
+			if (this.speed === 0.5) {
+				return this.speed = 1;
+			} else if (this.speed === 1) {
+				return this.speed = 1.5;
+			} else {
+				return this.speed = 0.5;
+			}
 		},
 	},
 };
@@ -122,7 +147,9 @@ export default {
 #bubble-sort-numbers {
 	display: flex;
 	height: 50px;
+	width: 90%;
 	border: 3px solid black;
+	margin: auto;
 }
 .number-div {
 	list-style: none;
@@ -134,18 +161,33 @@ export default {
 	background-color: white;
 	transition-property: background-color;
 }
-.number-list-move {
+.number-list-medium-move {
 	transition: all 1s ease-in-out;
+	background-color: var(--light-red);
+}
+.number-list-slow-move {
+	transition: all 1.5s ease-in-out;
+	background-color: var(--light-red);
+}
+.number-list-fast-move {
+	transition: all 0.5s ease-in-out;
 	background-color: var(--light-red);
 }
 #stats {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-evenly;
 }
 .btn {
 	height: 30px;
-	width: 100px;
+	width: 120px;
 	margin: 10px;
 	border-radius: 5px;
+}
+.btn:hover {
+	cursor: pointer;
+	transform: scale(1.05);
+}
+.btn:disabled {
+	cursor: not-allowed;
 }
 </style>
