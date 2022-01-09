@@ -1,14 +1,23 @@
 <template>
-	<bubble-sort :startingNumbers="startingNumbers"></bubble-sort>
+	<sorting-card
+		:startingNumbers="startingNumbers"
+		:algorithm="algorithms[0].name"
+		:bulletPoints="algorithms[0].bulletPoints"
+	></sorting-card>
+	<sorting-card
+		:startingNumbers="startingNumbers"
+		:algorithm="algorithms[1].name"
+		:bulletPoints="algorithms[1].bulletPoints"
+	></sorting-card>
 </template>
 
 <script>
-import BubbleSort from "./components/BubbleSort.vue";
+import sortingCard from "./components/SortingCard.vue";
 
 export default {
 	name: "App",
 	components: {
-		BubbleSort,
+		sortingCard,
 	},
 	data() {
 		return {
@@ -22,9 +31,26 @@ export default {
 				{ value: 1, id: Math.random() * 999, isFocused: false },
 				{ value: 3, id: Math.random() * 999, isFocused: false },
 			],
+			algorithms: [
+				{
+					name: "Bubble",
+					bulletPoints: [
+						"Steps through list",
+						"Compares adjacent elements",
+						"Swaps them if they are in wrong order",
+					],
+				},
+				{
+					name: "Insertion",
+					bulletPoints: [
+						"Starting from left of array",
+						"Create sorted and unsorted partitions",
+						"Sort next item into sorted partition",
+					],
+				},
+			],
 		};
 	},
-	methods: {},
 };
 </script>
 

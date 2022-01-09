@@ -1,19 +1,21 @@
 <template>
 	<div id="outer-container">
-		<h1 id="heading">Bubble Sort</h1>
+		<h1 id="heading">{{ algorithm }} Sort</h1>
 		<ul id="description">
-			<li class="description-item">Steps through list</li>
-			<li class="description-item">Compares adjacent elements</li>
-			<li class="description-item">
-				Swaps them if they are in wrong order
+			<li
+				v-for="bullet in bulletPoints"
+				class="description-item"
+				:key="bullet"
+			>
+				{{ bullet }}
 			</li>
 		</ul>
-		<div id="bubble-sort-numbers">
+		<div id="sort-numbers">
 			<transition-group :name="changeAnimationSpeed">
 				<li
 					v-for="number in numbers"
 					:class="
-						number.isFocused ? 'number-div-focused' : 'number-div'
+						number.isFocused ? chosenFocus : 'number-div'
 					"
 					:key="number.id"
 				>
@@ -31,9 +33,9 @@
 				type="button"
 				class="btn"
 				:disabled="btnPressed || isSorted"
-				@click="startBubbleSort"
+				@click="chosenAlgorithm"
 			>
-				Bubble Sort
+				Sort
 			</button>
 			<button
 				type="button"
@@ -57,9 +59,17 @@
 
 <script>
 export default {
-	name: "BubbleSort",
+	name: "SortingCard",
 	props: {
 		startingNumbers: {
+			type: Array,
+			required: true,
+		},
+		algorithm: {
+			type: String,
+			required: true,
+		},
+		bulletPoints: {
 			type: Array,
 			required: true,
 		},
@@ -89,6 +99,16 @@ export default {
 				: this.speed === 4
 				? "Fast"
 				: "Slow";
+		},
+		chosenAlgorithm() {
+			return this.algorithm === "Bubble"
+				? this.startBubbleSort
+				: this.startInsertionSort;
+		},
+		chosenFocus() {
+			return this.algorithm === "Bubble"
+				? "number-div-focused-grey"
+				: "number-div-focused-green";
 		},
 	},
 	methods: {
@@ -127,6 +147,36 @@ export default {
 			this.btnPressed = false;
 			this.isSorted = true;
 		},
+		async startInsertionSort() {
+			this.btnPressed = true;
+			// first element is always already sorted
+			this.numbers[0].isFocused = true;
+			for (let i = 1; i < this.numbers.length; i++) {
+				this.numbers[i].isFocused = true;
+				let madeSwap = false;
+				let currentValue = this.numbers[i].value;
+				let j = i - 1;
+				while (j >= 0 && this.numbers[j].value > currentValue) {
+					const holdingValue = this.numbers[j + 1];
+					this.numbers[j + 1] = this.numbers[j];
+					this.numbers[j] = holdingValue;
+					madeSwap = true;
+					this.numberOfSwaps++;
+					j--;
+					await new Promise((r) => setTimeout(r, 1100 / this.speed));
+				}
+				this.numbers[j + 1].value = currentValue;
+				if (madeSwap) {
+					this.iterations++;
+				}
+			}
+			// remove green focus
+			for (let i = 0; i < this.numbers.length; i++) {
+				this.numbers[i].isFocused = false;
+			}
+			this.btnPressed = false;
+			this.isSorted = true;
+		},
 		async resetNumbers() {
 			this.numbers = JSON.parse(JSON.stringify(this.startingNumbers));
 			// so buttons aren't pressed until reset complete
@@ -153,8 +203,8 @@ export default {
 @import "../assets/styles/variables.css";
 
 #outer-container {
-	height: 350px;
-	width: 500px;
+	height: 400px;
+	width: 600px;
 	border: 1px solid black;
 	box-shadow: 3px 3px 10px var(--light-black);
 	padding: 10px;
@@ -170,7 +220,7 @@ export default {
 .description-item {
 	font-family: var(--font-family);
 }
-#bubble-sort-numbers {
+#sort-numbers {
 	display: flex;
 	height: 50px;
 	width: 90%;
@@ -178,7 +228,8 @@ export default {
 	margin: auto;
 }
 .number-div,
-.number-div-focused {
+.number-div-focused-grey,
+.number-div-focused-green {
 	list-style: none;
 	display: flex;
 	flex: 1;
@@ -186,9 +237,12 @@ export default {
 	align-items: center;
 	border: 1px dotted var(--light-black);
 }
-.number-div-focused {
+.number-div-focused-grey {
 	font-size: 1.3rem;
 	background-color: var(--light-grey);
+}
+.number-div-focused-green {
+	background-color: var(--light-green);
 }
 .number-list-medium-move {
 	transition: all 1s ease-in-out;
