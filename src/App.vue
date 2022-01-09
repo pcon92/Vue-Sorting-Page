@@ -1,10 +1,14 @@
 <template>
+	<sorting-header
+		:cards="algorithms"></sorting-header>
 	<sorting-card
+		class="sorting-card-component"
 		:startingNumbers="startingNumbers"
 		:algorithm="algorithms[0].name"
 		:bulletPoints="algorithms[0].bulletPoints"
 	></sorting-card>
 	<sorting-card
+		class="sorting-card-component"
 		:startingNumbers="startingNumbers"
 		:algorithm="algorithms[1].name"
 		:bulletPoints="algorithms[1].bulletPoints"
@@ -12,11 +16,13 @@
 </template>
 
 <script>
+import sortingHeader from "./components/SortingHeader.vue";
 import sortingCard from "./components/SortingCard.vue";
 
 export default {
 	name: "App",
 	components: {
+		sortingHeader,
 		sortingCard,
 	},
 	data() {
@@ -60,8 +66,12 @@ export default {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
+}
+.sorting-card-component {
+	margin: 25px;
 }
 </style>

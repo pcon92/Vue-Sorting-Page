@@ -54,6 +54,7 @@
 				Change Speed
 			</button>
 		</div>
+		<p v-show="isSorted">Sort Complete!</p>
 	</div>
 </template>
 
