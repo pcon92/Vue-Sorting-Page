@@ -1,6 +1,6 @@
 <template>
 	<div id="outer-container">
-		<h1 id="heading">{{ algorithm }} Sort</h1>
+		<h1 id="heading">{{ activeCard }} Sort</h1>
 		<ul id="description">
 			<li
 				v-for="bullet in bulletPoints"
@@ -14,9 +14,7 @@
 			<transition-group :name="changeAnimationSpeed">
 				<li
 					v-for="number in numbers"
-					:class="
-						number.isFocused ? chosenFocus : 'number-div'
-					"
+					:class="number.isFocused ? chosenFocus : 'number-div'"
 					:key="number.id"
 				>
 					{{ number.value }}
@@ -66,12 +64,16 @@ export default {
 			type: Array,
 			required: true,
 		},
-		algorithm: {
+		activeCard: {
 			type: String,
 			required: true,
 		},
 		bulletPoints: {
 			type: Array,
+			required: true,
+		},
+		isShown: {
+			type: Boolean,
 			required: true,
 		},
 	},
@@ -102,12 +104,12 @@ export default {
 				: "Slow";
 		},
 		chosenAlgorithm() {
-			return this.algorithm === "Bubble"
+			return this.activeCard === "Bubble"
 				? this.startBubbleSort
 				: this.startInsertionSort;
 		},
 		chosenFocus() {
-			return this.algorithm === "Bubble"
+			return this.activeCard === "Bubble"
 				? "number-div-focused-grey"
 				: "number-div-focused-green";
 		},

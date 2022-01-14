@@ -1,18 +1,18 @@
 <template>
 	<sorting-header
-		:cards="algorithms"></sorting-header>
-	<sorting-card
-		class="sorting-card-component"
-		:startingNumbers="startingNumbers"
-		:algorithm="algorithms[0].name"
-		:bulletPoints="algorithms[0].bulletPoints"
-	></sorting-card>
-	<sorting-card
-		class="sorting-card-component"
-		:startingNumbers="startingNumbers"
-		:algorithm="algorithms[1].name"
-		:bulletPoints="algorithms[1].bulletPoints"
-	></sorting-card>
+		:cards="algorithms"
+		@add-card="addCard"
+		@remove-card="removeCard"
+	></sorting-header>
+	<div v-for="(activeCard, index) in activeCards" :key="index">
+		<sorting-card
+			class="sorting-card-component"
+			:startingNumbers="startingNumbers"
+			:activeCard="activeCard.name"
+			:bulletPoints="activeCard.bulletPoints"
+			:isShown="activeCard.isShown"
+		/>
+	</div>
 </template>
 
 <script>
@@ -45,6 +45,7 @@ export default {
 						"Compares adjacent elements",
 						"Swaps them if they are in wrong order",
 					],
+					isShown: true,
 				},
 				{
 					name: "Insertion",
@@ -53,9 +54,31 @@ export default {
 						"Create sorted and unsorted partitions",
 						"Sort next item into sorted partition",
 					],
+					isShown: false,
 				},
 			],
+			activeCards: [],
 		};
+	},
+	methods: {
+		addCard(name) {
+			const pickedCard = this.algorithms.find(
+				(algorithm) => algorithm.name === name
+			);
+			this.activeCards.push(pickedCard);
+		},
+		removeCard(name) {
+			const filteredCards = this.activeCards.filter(
+				(algorithm) => algorithm.name !== name
+			);
+			this.activeCards = filteredCards;
+		},
+	},
+	created() {
+		const defaultCards = this.algorithms.find(
+			(card) => card.isShown === true
+		);
+		this.activeCards.push(defaultCards);
 	},
 };
 </script>

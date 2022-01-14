@@ -1,13 +1,34 @@
 <template>
 	<div id="outer-container">
 		<div id="all-cards">
-			<li v-for="(card, index) in cards" class="card-div unselected" :key="index">
+			<li
+				v-for="(card, index) in cards"
+				class="card-div unselected"
+				:key="index"
+			>
 				{{ card.name }} Sort
+				<div
+					class="change-cards-btn add-card"
+					@click="selectCard(card.name)"
+					:disabled="false"
+				>
+					<div v-if="!checkIfActive(card.name)">+</div>
+				</div>
 			</li>
 		</div>
 		<div id="selected-cards">
-			<li v-for="(card, index) in cards" class="card-div selected" :key="index">
-				{{ card.name }} Sort
+			<li
+				v-for="(card, index) in selectedCards"
+				class="card-div selected"
+				:key="index"
+			>
+				{{ card }} Sort
+				<div
+					class="change-cards-btn remove-card"
+					@click="removeCard(card)"
+				>
+					X
+				</div>
 			</li>
 		</div>
 	</div>
@@ -15,11 +36,35 @@
 
 <script>
 export default {
-	props: ["cards"],
+	props: ["cards", "activeCards"],
+	emits: ["add-card", "remove-card"],
 	data() {
 		return {
-			sortingWidgets: ["bubbleSort", "insertionSort"],
+			selectedCards: [],
 		};
+	},
+	methods: {
+		selectCard(name) {
+			this.selectedCards.push(name);
+			this.$emit("add-card", name);
+		},
+		removeCard(name) {
+			const filteredCards = this.selectedCards.filter(
+				(card) => card !== name
+			);
+			this.selectedCards = filteredCards;
+			this.$emit("remove-card", name);
+		},
+		checkIfActive(name) {
+			const filteredCards = this.selectedCards.filter(
+				(card) => card === name
+			);
+			return filteredCards.length;
+		}
+	},
+	created() {
+		const defaultCards = this.cards.find((card) => card.isShown === true);
+		this.selectedCards.push(defaultCards.name);
 	},
 };
 </script>
@@ -50,8 +95,7 @@ export default {
 	display: flex;
 }
 .card-div {
-	border: 1px solid black;
-	width: 100px;
+	width: 200px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -61,5 +105,11 @@ export default {
 }
 .selected {
 	border: 1px dotted black;
+}
+.change-cards-btn {
+	align-self: flex-start;
+}
+.change-cards-btn:hover {
+	cursor: pointer;
 }
 </style>
