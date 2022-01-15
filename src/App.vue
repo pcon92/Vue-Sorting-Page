@@ -1,28 +1,30 @@
 <template>
-	<sorting-header
+	<the-header
 		:cards="algorithms"
 		@add-card="addCard"
 		@remove-card="removeCard"
-	></sorting-header>
-	<div v-for="(activeCard, index) in activeCards" :key="index">
+	></the-header>
+	<transition-group name="card-transition">
 		<sorting-card
+			v-for="activeCard in activeCards"
+			:key="activeCard.id"
+			:starting-numbers="startingNumbers"
+			:active-card="activeCard.name"
+			:bullet-points="activeCard.bulletPoints"
+			:is-shown="activeCard.isShown"
 			class="sorting-card-component"
-			:startingNumbers="startingNumbers"
-			:activeCard="activeCard.name"
-			:bulletPoints="activeCard.bulletPoints"
-			:isShown="activeCard.isShown"
 		/>
-	</div>
+	</transition-group>
 </template>
 
 <script>
-import sortingHeader from "./components/SortingHeader.vue";
+import theHeader from "./components/TheHeader.vue";
 import sortingCard from "./components/SortingCard.vue";
 
 export default {
 	name: "App",
 	components: {
-		sortingHeader,
+		theHeader,
 		sortingCard,
 	},
 	data() {
@@ -46,6 +48,7 @@ export default {
 						"Swaps them if they are in wrong order",
 					],
 					isShown: true,
+					id: 1,
 				},
 				{
 					name: "Insertion",
@@ -55,6 +58,7 @@ export default {
 						"Sort next item into sorted partition",
 					],
 					isShown: false,
+					id: 2,
 				},
 			],
 			activeCards: [],
@@ -93,8 +97,20 @@ export default {
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
 }
 .sorting-card-component {
 	margin: 25px;
+}
+.card-transition-leave-active {
+	transition: all 0.25s ease;
+}
+.card-transition-leave-to {
+	transform: translateX(500px);
+	opacity: 0;
+}
+.card-transition-move {
+	transition: all 0.25s linear;
 }
 </style>

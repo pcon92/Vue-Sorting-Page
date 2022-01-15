@@ -208,10 +208,9 @@ export default {
 #outer-container {
 	height: 400px;
 	width: 600px;
-	border: 1px solid black;
-	box-shadow: 3px 3px 10px var(--light-black);
+	box-shadow: 2px 3px 10px var(--light-black);
 	padding: 10px;
-	border-radius: 5px;
+	border-radius: 15px;
 	text-align: center;
 }
 #heading {

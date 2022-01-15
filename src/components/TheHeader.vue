@@ -36,7 +36,16 @@
 
 <script>
 export default {
-	props: ["cards", "activeCards"],
+	props: {
+		cards: {
+			type: Array,
+			required: true,
+		},
+		activeCards: {
+			type: Array,
+			required: true,
+		},
+	},
 	emits: ["add-card", "remove-card"],
 	data() {
 		return {
@@ -60,7 +69,7 @@ export default {
 				(card) => card === name
 			);
 			return filteredCards.length;
-		}
+		},
 	},
 	created() {
 		const defaultCards = this.cards.find((card) => card.isShown === true);
@@ -75,14 +84,11 @@ export default {
 	height: 100px;
 	width: 100vw;
 	border: 1px solid black;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	display: flex;
-	flex: 1;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 }
 #all-cards {
 	flex: 0.3;

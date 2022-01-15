@@ -3,6 +3,7 @@
 - Built alongside Udemy Course Vue - The Complete Guide
 - Originally built with Vue Script import then remade with Vue CLI
 - Refactored separate components Bubble sort and Insertion sort into one Sorting card component
+- Once discovered Vue Style Guide refactor to fit style guide (e.g. prop definitions including types)
 
 
 
