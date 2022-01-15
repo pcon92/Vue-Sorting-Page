@@ -206,8 +206,8 @@ export default {
 @import "../assets/styles/variables.css";
 
 #outer-container {
-	height: 400px;
-	width: 600px;
+	height: 375px;
+	width: 575px;
 	box-shadow: 2px 3px 10px var(--light-black);
 	padding: 10px;
 	border-radius: 15px;

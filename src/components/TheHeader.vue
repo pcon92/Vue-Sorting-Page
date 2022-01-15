@@ -1,6 +1,7 @@
 <template>
 	<div id="outer-container">
-		<div id="all-cards">
+		<div class="card-options">
+			<p class="caption">Choose from:</p>
 			<li
 				v-for="card in cards"
 				:class="getAllCardsClass(card.name)"
@@ -10,7 +11,8 @@
 				{{ card.name }} Sort
 			</li>
 		</div>
-		<div id="selected-cards">
+		<div class="card-options">
+			<p class="caption">Chosen cards:</p>
 			<li
 				v-for="card in selectedCards"
 				class="card-div selected"
@@ -88,13 +90,12 @@ export default {
 	justify-content: space-between;
 	box-shadow: 0px 1px 5px var(--light-black);
 }
-#all-cards {
-	flex: 0.25;
-	width: 100%;
-	display: flex;
+.caption {
+	width: 150px;
+	font-weight: bold;
+	text-align: center;
 }
-#selected-cards {
-	flex: 0.7;
+.card-options {
 	width: 100%;
 	display: flex;
 }
