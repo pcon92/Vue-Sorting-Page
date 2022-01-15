@@ -4,7 +4,7 @@
 		@add-card="addCard"
 		@remove-card="removeCard"
 	></the-header>
-	<transition-group name="card-transition">
+	<transition-group name="card-transition" appear>
 		<sorting-card
 			v-for="activeCard in activeCards"
 			:key="activeCard.id"
@@ -103,6 +103,11 @@ export default {
 .sorting-card-component {
 	margin: 25px;
 }
+.card-transition-enter-from {
+	transform: translateX(-500px);
+	opacity: 0;
+}
+.card-transition-enter-active,
 .card-transition-leave-active {
 	transition: all 0.25s ease;
 }

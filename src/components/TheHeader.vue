@@ -2,33 +2,22 @@
 	<div id="outer-container">
 		<div id="all-cards">
 			<li
-				v-for="(card, index) in cards"
-				class="card-div unselected"
-				:key="index"
+				v-for="card in cards"
+				:class="getAllCardsClass(card.name)"
+				:key="card.id"
+				@click="selectCard(card.name)"
 			>
 				{{ card.name }} Sort
-				<div
-					class="change-cards-btn add-card"
-					@click="selectCard(card.name)"
-					:disabled="false"
-				>
-					<div v-if="!checkIfActive(card.name)">+</div>
-				</div>
 			</li>
 		</div>
 		<div id="selected-cards">
 			<li
-				v-for="(card, index) in selectedCards"
+				v-for="card in selectedCards"
 				class="card-div selected"
-				:key="index"
+				:key="card.id"
+				@click="removeCard(card)"
 			>
 				{{ card }} Sort
-				<div
-					class="change-cards-btn remove-card"
-					@click="removeCard(card)"
-				>
-					X
-				</div>
 			</li>
 		</div>
 	</div>
@@ -41,10 +30,6 @@ export default {
 			type: Array,
 			required: true,
 		},
-		activeCards: {
-			type: Array,
-			required: true,
-		},
 	},
 	emits: ["add-card", "remove-card"],
 	data() {
@@ -54,21 +39,32 @@ export default {
 	},
 	methods: {
 		selectCard(name) {
-			this.selectedCards.push(name);
-			this.$emit("add-card", name);
+			if (!this.checkIfActive(name)) {
+				this.selectedCards.push(name);
+				this.$emit("add-card", name);
+			}
 		},
 		removeCard(name) {
-			const filteredCards = this.selectedCards.filter(
-				(card) => card !== name
-			);
-			this.selectedCards = filteredCards;
-			this.$emit("remove-card", name);
+			if (this.checkIfActive(name)) {
+				const filteredCards = this.selectedCards.filter(
+					(card) => card !== name
+				);
+				this.selectedCards = filteredCards;
+				this.$emit("remove-card", name);
+			}
 		},
 		checkIfActive(name) {
 			const filteredCards = this.selectedCards.filter(
 				(card) => card === name
 			);
 			return filteredCards.length;
+		},
+		getAllCardsClass(name) {
+			if (this.checkIfActive(name)) {
+				return "card-div unselected-disabled";
+			} else {
+				return "card-div unselected-active";
+			}
 		},
 	},
 	created() {
@@ -89,9 +85,11 @@ export default {
 	left: 0;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
+	box-shadow: 0px 1px 5px var(--light-black);
 }
 #all-cards {
-	flex: 0.3;
+	flex: 0.25;
 	width: 100%;
 	display: flex;
 }
@@ -106,16 +104,25 @@ export default {
 	justify-content: center;
 	align-items: center;
 }
-.unselected {
+.unselected-active {
 	border: 1px solid black;
+}
+.unselected-disabled {
+	border: 1px solid black;
+	opacity: 0.5;
+}
+.unselected-active:hover {
+	background-color: var(--light-green);
+	cursor: pointer;
+}
+.unselected-disabled:hover {
+	cursor: not-allowed;
 }
 .selected {
 	border: 1px dotted black;
 }
-.change-cards-btn {
-	align-self: flex-start;
-}
-.change-cards-btn:hover {
+.selected:hover {
+	background-color: var(--light-red);
 	cursor: pointer;
 }
 </style>
