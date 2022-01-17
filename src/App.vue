@@ -1,19 +1,23 @@
 <template>
-	<the-header
-		:cards="algorithms"
-		@add-card="addCard"
-		@remove-card="removeCard"
-	></the-header>
+	<div id="header-div">
+		<the-header
+			:cards="algorithms"
+			@add-card="addCard"
+			@remove-card="removeCard"
+		></the-header>
+	</div>
 	<transition-group name="card-transition" appear>
-		<sorting-card
-			v-for="activeCard in activeCards"
-			:key="activeCard.id"
-			:starting-numbers="startingNumbers"
-			:active-card="activeCard.name"
-			:bullet-points="activeCard.bulletPoints"
-			:is-shown="activeCard.isShown"
-			class="sorting-card-component"
-		/>
+		<div id="card-area-div">
+			<sorting-card
+				v-for="activeCard in activeCards"
+				:key="activeCard.id"
+				:starting-numbers="startingNumbers"
+				:active-card="activeCard.name"
+				:bullet-points="activeCard.bulletPoints"
+				:is-shown="activeCard.isShown"
+				class="sorting-card-component"
+			/>
+		</div>
 	</transition-group>
 </template>
 
@@ -60,6 +64,16 @@ export default {
 					isShown: false,
 					id: 2,
 				},
+				{
+					name: "Selection",
+					bulletPoints: [
+						"Divides array into sorted and unsorted partitions",
+						"Look through unsorted partition to find smallest value",
+						"Place smallest unsorted value in front of sorted partition",
+					],
+					isShown: false,
+					id: 3,
+				},
 			],
 			activeCards: [],
 		};
@@ -98,7 +112,17 @@ export default {
 	align-items: center;
 	height: 100vh;
 	width: 100vw;
-	overflow: hidden;
+}
+#header-div {
+	flex: 0.1;
+}
+#card-area-div {
+	overflow: auto;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex: 0.9;
 }
 .sorting-card-component {
 	margin: 25px;

@@ -106,19 +106,20 @@ export default {
 		chosenAlgorithm() {
 			return this.activeCard === "Bubble"
 				? this.startBubbleSort
-				: this.startInsertionSort;
+				: this.activeCard === "Insertion"
+				? this.startInsertionSort
+				: this.startSelectionSort;
 		},
 		chosenFocus() {
-			return this.activeCard === "Bubble"
-				? "number-div-focused-grey"
-				: "number-div-focused-green";
+			return this.activeCard === "Insertion"
+				? "number-div-focused-green"
+				: "number-div-focused-grey";
 		},
 	},
 	methods: {
 		async startBubbleSort() {
 			let madeSwap;
 			this.btnPressed = true;
-			this.iterations = 0;
 			do {
 				madeSwap = false;
 				for (let i = 0; i < this.numbers.length; i++) {
@@ -187,6 +188,38 @@ export default {
 			this.isSorted = false;
 			this.iterations = 0;
 			this.numberOfSwaps = 0;
+		},
+		async startSelectionSort() {
+			// based off https://stackabuse.com/selection-sort-in-javascript/
+			this.btnPressed = true;
+			for (let i = 0; i < this.numbers.length; i++) {
+				let lowest = i;
+
+				for (let j = i + 1; j < this.numbers.length; j++) {
+					this.numbers[i].isFocused = true;
+					this.numbers[j].isFocused = true;
+					await new Promise((r) => setTimeout(r, 1100 / this.speed));
+					if (this.numbers[j].value < this.numbers[lowest].value) {
+						lowest = j;
+					}
+				}
+
+				// remove focus after each iteration
+				for (let k = 0; k < this.numbers.length; k++) {
+					this.numbers[k].isFocused = false;
+				}
+
+				if (lowest != i) {
+					// Swapping the elements
+					this.numberOfSwaps++;
+					const holdingValue = this.numbers[i];
+					this.numbers[i] = this.numbers[lowest];
+					this.numbers[lowest] = holdingValue;
+				}
+				this.iterations++;
+			}
+			this.btnPressed = false;
+			this.isSorted = true;
 		},
 		changeSpeed() {
 			if (this.speed === 0.5) {

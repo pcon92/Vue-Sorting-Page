@@ -79,7 +79,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #outer-container {
-	height: 100px;
 	width: 100vw;
 	border: 1px solid black;
 	position: fixed;
@@ -89,6 +88,8 @@ export default {
 	flex-direction: column;
 	justify-content: space-between;
 	box-shadow: 0px 1px 5px var(--light-black);
+	z-index: 10;
+	background-color: var(--white);
 }
 .caption {
 	width: 150px;
