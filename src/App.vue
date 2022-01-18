@@ -7,7 +7,7 @@
 		></the-header>
 	</div>
 	<transition-group name="card-transition" appear>
-		<div id="card-area-div">
+		<div id="card-area-div" key="1">
 			<sorting-card
 				v-for="activeCard in activeCards"
 				:key="activeCard.id"
@@ -73,6 +73,16 @@ export default {
 					],
 					isShown: false,
 					id: 3,
+				},
+				{
+					name: "Shell",
+					bulletPoints: [
+						"A variation of insertion sort",
+						"Using Shell's original sequence as intervals",
+						"Elements at the interval will be compared and swapped if needed",
+					],
+					isShown: false,
+					id: 4,
 				},
 			],
 			activeCards: [],

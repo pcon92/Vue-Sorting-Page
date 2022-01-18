@@ -25,7 +25,7 @@
 			<div id="stats">
 				<p>Iterations: {{ iterations }}</p>
 				<p>Number of Swaps: {{ numberOfSwaps }}</p>
-				<p>Speed: {{ displayCurrentSpeed }}</p>
+				<p>Animation Speed: {{ displayCurrentSpeed }}</p>
 			</div>
 			<button
 				type="button"
@@ -108,7 +108,9 @@ export default {
 				? this.startBubbleSort
 				: this.activeCard === "Insertion"
 				? this.startInsertionSort
-				: this.startSelectionSort;
+				: this.activeCard === "Selection"
+				? this.startSelectionSort
+				: this.startShellSort;
 		},
 		chosenFocus() {
 			return this.activeCard === "Insertion"
@@ -198,10 +200,11 @@ export default {
 				for (let j = i + 1; j < this.numbers.length; j++) {
 					this.numbers[i].isFocused = true;
 					this.numbers[j].isFocused = true;
-					await new Promise((r) => setTimeout(r, 1100 / this.speed));
+
 					if (this.numbers[j].value < this.numbers[lowest].value) {
 						lowest = j;
 					}
+					await new Promise((r) => setTimeout(r, 1100 / this.speed));
 				}
 
 				// remove focus after each iteration
@@ -210,13 +213,51 @@ export default {
 				}
 
 				if (lowest != i) {
-					// Swapping the elements
 					this.numberOfSwaps++;
 					const holdingValue = this.numbers[i];
 					this.numbers[i] = this.numbers[lowest];
 					this.numbers[lowest] = holdingValue;
 				}
 				this.iterations++;
+			}
+			this.btnPressed = false;
+			this.isSorted = true;
+		},
+		async startShellSort() {
+			// based off https://learnersbucket.com/tutorials/algorithms/shell-sort-algorithm-in-javascript/
+			this.btnPressed = true;
+			for (
+				let interval = this.numbers.length / 2;
+				interval >= 1;
+				interval /= 2
+			) {
+				for (let i = interval; i < this.numbers.length; i += 1) {
+					let holdingValue = this.numbers[i];
+					let j;
+					this.numbers[i].isFocused = true;
+
+					for (
+						j = i;
+						j >= interval &&
+						this.numbers[j - interval].value > holdingValue.value;
+						j -= interval
+					) {
+						this.numbers[j - interval].isFocused = true;
+						await new Promise((r) =>
+							setTimeout(r, 1100 / this.speed)
+						);
+
+						this.numbers[j] = this.numbers[j - interval];
+						this.numberOfSwaps++;
+					}
+					this.numbers[i].isFocused = false;
+					this.numbers[j] = holdingValue;
+				}
+				this.iterations++;
+				// remove focus after each iteration
+				for (let k = 0; k < this.numbers.length; k++) {
+					this.numbers[k].isFocused = false;
+				}
 			}
 			this.btnPressed = false;
 			this.isSorted = true;
