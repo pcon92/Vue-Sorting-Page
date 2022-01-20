@@ -19,17 +19,22 @@
 			/>
 		</div>
 	</transition-group>
+	<div id="footer-div">
+		<the-footer :name="name" :year="year" :links="links"></the-footer>
+	</div>
 </template>
 
 <script>
 import theHeader from "./components/TheHeader.vue";
 import sortingCard from "./components/SortingCard.vue";
+import theFooter from "./components/TheFooter.vue";
 
 export default {
 	name: "App",
 	components: {
 		theHeader,
 		sortingCard,
+		theFooter,
 	},
 	data() {
 		return {
@@ -86,6 +91,28 @@ export default {
 				},
 			],
 			activeCards: [],
+			name: "Paul C",
+			year: "2022",
+			links: [
+				{
+					name: "Github",
+					url: "https://github.com/pcon92",
+					icon: "fab fa-github fa-2x",
+					id: 0,
+				},
+				{
+					name: "Portfolio",
+					url: "https://paulc-portfolio.netlify.app/",
+					icon: "far fa-folder fa-2x",
+					id: 1,
+				},
+				{
+					name: "Email",
+					url: "mailto:palu_comgui@outlook.com",
+					icon: "far fa-envelope fa-2x",
+					id: 2,
+				},
+			],
 		};
 	},
 	methods: {
@@ -119,12 +146,11 @@ export default {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
 	height: 100vh;
 	width: 100vw;
 }
 #header-div {
-	flex: 0.1;
+	height: 10%;
 }
 #card-area-div {
 	overflow: auto;
@@ -132,7 +158,11 @@ export default {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	flex: 0.9;
+	height: 85%;
+	background-color: var(--background-for-card-area);
+}
+#footer-div {
+	height: 5%;
 }
 .sorting-card-component {
 	margin: 25px;

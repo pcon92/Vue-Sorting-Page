@@ -1,7 +1,7 @@
 <template>
 	<div id="outer-container">
-		<div class="card-options">
-			<p class="caption">Choose from:</p>
+		<div class="card-options" id="top-options">
+			<p class="caption" id="top-caption">Choose from:</p>
 			<li
 				v-for="card in cards"
 				:class="getAllCardsClass(card.name)"
@@ -11,8 +11,8 @@
 				{{ card.name }} Sort
 			</li>
 		</div>
-		<div class="card-options">
-			<p class="caption">Chosen cards:</p>
+		<div class="card-options" id="bottom-options">
+			<p class="caption" id="bottom-caption">Chosen cards:</p>
 			<li
 				v-for="card in selectedCards"
 				class="card-div selected"
@@ -79,26 +79,27 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #outer-container {
-	width: 100vw;
-	border: 1px solid black;
-	position: fixed;
-	top: 0;
-	left: 0;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	box-shadow: 0px 1px 5px var(--light-black);
-	z-index: 10;
-	background-color: var(--white);
+	background-color: var(--background-for-header-area);
+	color: var(--white);
 }
 .caption {
 	width: 150px;
 	font-weight: bold;
-	text-align: center;
+	margin-left: 1%;
+	color: var(--font-color-header-caption);
 }
 .card-options {
-	width: 100%;
 	display: flex;
+}
+#top-options {
+	height: 35%;
+}
+#bottom-options {
+	height: 55%;
 }
 .card-div {
 	width: 200px;
@@ -107,24 +108,27 @@ export default {
 	align-items: center;
 }
 .unselected-active {
-	border: 1px solid black;
+	border: 1px solid var(--light-grey);
+	border-radius: 5px;
 }
 .unselected-disabled {
-	border: 1px solid black;
-	opacity: 0.5;
+	border: 1px solid var(--light-grey);
+	border-radius: 5px;
+	opacity: 0.35;
 }
 .unselected-active:hover {
-	background-color: var(--light-green);
+	background-color: var(--vue-orange);
 	cursor: pointer;
 }
 .unselected-disabled:hover {
 	cursor: not-allowed;
 }
 .selected {
-	border: 1px dotted black;
+	border: 1px solid var(--light-grey);
+	border-radius: 5px;
 }
 .selected:hover {
-	background-color: var(--light-red);
+	background-color: var(--vue-red);
 	cursor: pointer;
 }
 </style>

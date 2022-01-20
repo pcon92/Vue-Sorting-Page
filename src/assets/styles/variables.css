@@ -8,4 +8,10 @@
 	--light-grey: rgba(0, 0, 0, 0.1);
 	--light-green: rgba(0, 255, 0, 0.3);
 	--white: rgba(255, 255, 255, 1);
+	--background-for-card-area: #F6F6F6;
+	--background-for-header-area: #42B983;
+	--font-color-header-caption:#D6FFEC;
+	--background-for-footer-area: #304455;
+	--vue-red: #f66;
+	--vue-orange: #ffa500;
 }

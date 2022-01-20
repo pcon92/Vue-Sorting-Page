@@ -280,12 +280,13 @@ export default {
 @import "../assets/styles/variables.css";
 
 #outer-container {
-	height: 375px;
-	width: 575px;
+	min-height: 375px;
+	min-width: 575px;
 	box-shadow: 2px 3px 10px var(--light-black);
 	padding: 10px;
 	border-radius: 15px;
 	text-align: center;
+	background-color: var(--white);
 }
 #heading {
 	text-decoration: underline;
