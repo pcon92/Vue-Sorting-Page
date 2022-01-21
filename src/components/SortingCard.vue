@@ -24,7 +24,7 @@
 		<div>
 			<div id="stats">
 				<p>Iterations: {{ iterations }}</p>
-				<p>Number of Swaps: {{ numberOfSwaps }}</p>
+				<p>Swaps: {{ numberOfSwaps }}</p>
 				<p>Animation Speed: {{ displayCurrentSpeed }}</p>
 			</div>
 			<button
@@ -49,10 +49,10 @@
 				:disabled="btnPressed || isSorted"
 				@click="changeSpeed"
 			>
-				Change Speed
+				Speed
 			</button>
 		</div>
-		<p v-show="isSorted">Sort Complete!</p>
+		<p v-show="isSorted" id="sort-complete-text">Sort Complete!</p>
 	</div>
 </template>
 
@@ -350,5 +350,116 @@ export default {
 .btn:disabled {
 	cursor: not-allowed;
 	transform: scale(1);
+}
+
+/* Media queries */
+
+@media (max-width: 20rem) {
+	/* 320 pixels */
+	#outer-container {
+		min-height: 270px;
+		min-width: 250px;
+	}
+	#heading {
+		font-size: 1.3rem;
+	}
+	#description {
+		font-size: 0.7rem;
+		margin-left: -15px;
+	}
+	#sort-numbers {
+		height: 30px;
+	}
+	.number-div {
+		font-size: 0.8rem;
+	}
+	.number-div-focused-grey {
+		font-size: 1rem;
+	}
+	#stats {
+		font-size: 0.6rem;
+	}
+	.btn {
+		height: 25px;
+		width: 50px;
+		font-size: 0.7rem;
+	}
+	#sort-complete-text {
+		font-size: 0.8rem;
+	}
+}
+
+@media (min-width: 20rem) {
+	/* 320 pixels */
+	#outer-container {
+		min-height: 300px;
+		min-width: 320px;
+	}
+	#heading {
+		font-size: 1.4rem;
+	}
+	#description {
+		font-size: 0.8rem;
+		margin-left: -15px;
+	}
+	#sort-numbers {
+		height: 30px;
+	}
+	.number-div {
+		font-size: 0.8rem;
+	}
+	.number-div-focused-grey {
+		font-size: 1rem;
+	}
+	#stats {
+		font-size: 0.7rem;
+	}
+	.btn {
+		height: 30px;
+		width: 60px;
+		font-size: 0.7rem;
+	}
+	#sort-complete-text {
+		font-size: 0.8rem;
+	}
+}
+
+@media (min-width: 40rem) {
+	/* 640 pixels */
+	#outer-container {
+		min-height: 375px;
+		min-width: 575px;
+	}
+	#heading {
+		font-size: 2rem;
+	}
+	#description {
+		font-size: 1rem;
+		margin-left: 0px;
+	}
+	#sort-numbers {
+		height: 50px;
+	}
+	.number-div {
+		font-size: 1rem;
+	}
+	.number-div-focused-grey {
+		font-size: 1.3rem;
+	}
+	#stats {
+		font-size: 1rem;
+	}
+	.btn {
+		height: 30px;
+		width: 100px;
+		font-size: 0.7rem;
+	}
+	#sort-complete-text {
+		font-size: 1rem;
+	}
+}
+
+@media (min-width: 60rem) {
+	/* 960 pixels */
 }
 </style>

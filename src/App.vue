@@ -52,7 +52,7 @@ export default {
 				{
 					name: "Bubble",
 					bulletPoints: [
-						"Steps through list",
+						"Steps through array starting from left",
 						"Compares adjacent elements",
 						"Swaps them if they are in wrong order",
 					],
@@ -72,9 +72,9 @@ export default {
 				{
 					name: "Selection",
 					bulletPoints: [
-						"Divides array into sorted and unsorted partitions",
-						"Look through unsorted partition to find smallest value",
-						"Place smallest unsorted value in front of sorted partition",
+						"Divide into sorted and unsorted partitions",
+						"Find smallest value in unsorted",
+						"Move that value to the front of sorted",
 					],
 					isShown: false,
 					id: 3,
@@ -84,7 +84,7 @@ export default {
 					bulletPoints: [
 						"A variation of insertion sort",
 						"Using Shell's original sequence as intervals",
-						"Elements at the interval will be compared and swapped if needed",
+						"Compare elements at interval to swap",
 					],
 					isShown: false,
 					id: 4,
@@ -181,5 +181,32 @@ export default {
 }
 .card-transition-move {
 	transition: all 0.25s linear;
+}
+
+/* Media queries */
+
+@media (max-width: 20rem) {
+	/* 320 pixels */
+	.sorting-card-component {
+		margin: 10px 20px 10px 20px;
+	}
+}
+
+@media (min-width: 20rem) {
+	/* 320 pixels */
+	.sorting-card-component {
+		margin: 15px 25px 15px 25px;
+	}
+}
+
+@media (min-width: 40rem) {
+	/* 640 pixels */
+	.sorting-card-component {
+		margin: 25px;
+	}
+}
+
+@media (min-width: 60rem) {
+	/* 960 pixels */
 }
 </style>

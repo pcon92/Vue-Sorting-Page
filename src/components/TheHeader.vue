@@ -1,7 +1,7 @@
 <template>
 	<div id="outer-container">
 		<div class="card-options" id="top-options">
-			<p class="caption" id="top-caption">Choose from:</p>
+			<p class="caption">Choose from:</p>
 			<li
 				v-for="card in cards"
 				:class="getAllCardsClass(card.name)"
@@ -12,7 +12,7 @@
 			</li>
 		</div>
 		<div class="card-options" id="bottom-options">
-			<p class="caption" id="bottom-caption">Chosen cards:</p>
+			<p class="caption">Chosen cards:</p>
 			<li
 				v-for="card in selectedCards"
 				class="card-div selected"
@@ -130,5 +130,48 @@ export default {
 .selected:hover {
 	background-color: var(--vue-red);
 	cursor: pointer;
+}
+
+/* Media queries */
+
+@media (max-width: 20rem) {
+	/* 320 pixels */
+	.caption {
+		width: 60px;
+		font-size: 0.8rem;
+		margin-right: 10px;
+	}
+	.card-div {
+		width: 55px;
+		font-size: 0.7rem;
+		text-align: center;
+	}
+}
+
+@media (min-width: 20rem) {
+	/* 320 pixels */
+	.caption {
+		width: 60px;
+		font-size: 0.8rem;
+		margin-right: 10px;
+	}
+	.card-div {
+		font-size: 0.7rem;
+	}
+}
+
+@media (min-width: 40rem) {
+	/* 640 pixels */
+	.caption {
+		width: 100px;
+		font-size: 1rem;
+	}
+	.card-div {
+		font-size: 1rem;
+	}
+}
+
+@media (min-width: 60rem) {
+	/* 960 pixels */
 }
 </style>
