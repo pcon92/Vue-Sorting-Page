@@ -298,16 +298,16 @@ export default {
 	background-color: var(--white);
 }
 .bubble-card {
-	border: 5px solid var(--border-for-bubble);
+	border: 10px solid var(--border-for-bubble);
 }
 .insertion-card {
-	border: 5px solid var(--border-for-insertion);
+	border: 10px solid var(--border-for-insertion);
 }
 .selection-card {
-	border: 5px solid var(--border-for-selection);
+	border: 10px solid var(--border-for-selection);
 }
 .shell-card {
-	border: 5px solid var(--border-for-shell);
+	border: 10px solid var(--border-for-shell);
 }
 #heading {
 	font-size: 2rem;
@@ -358,6 +358,10 @@ export default {
 	display: flex;
 	justify-content: space-evenly;
 }
+#sort-complete-text {
+	margin-top: 15px;
+	font-size: 1rem;
+}
 .btn {
 	height: 30px;
 	width: 120px;
@@ -378,14 +382,14 @@ export default {
 @media (max-width: 20rem) {
 	/* 320 pixels */
 	#outer-container {
-		min-height: 270px;
-		min-width: 250px;
+		min-height: 230px;
+		min-width: 230px;
 	}
 	#heading {
-		font-size: 1.3rem;
+		font-size: 1.1rem;
 	}
 	#description {
-		font-size: 0.7rem;
+		font-size: 0.6rem;
 		margin-left: -15px;
 	}
 	#sort-numbers {
@@ -401,26 +405,27 @@ export default {
 		font-size: 0.6rem;
 	}
 	.btn {
-		height: 25px;
+		height: 20px;
 		width: 50px;
-		font-size: 0.7rem;
+		font-size: 0.6rem;
 	}
 	#sort-complete-text {
-		font-size: 0.8rem;
+		margin-top: 5px;
+		font-size: 0.6rem;
 	}
 }
 
 @media (min-width: 20rem) {
 	/* 320 pixels */
 	#outer-container {
-		min-height: 300px;
-		min-width: 320px;
+		min-height: 260px;
+		min-width: 260px;
 	}
 	#heading {
-		font-size: 1.4rem;
+		font-size: 1.2rem;
 	}
 	#description {
-		font-size: 0.8rem;
+		font-size: 0.6rem;
 		margin-left: -15px;
 	}
 	#sort-numbers {
@@ -442,6 +447,10 @@ export default {
 	}
 	#sort-complete-text {
 		font-size: 0.8rem;
+	}
+	#sort-complete-text {
+		margin-top: 5px;
+		font-size: 0.7rem;
 	}
 }
 
@@ -478,6 +487,10 @@ export default {
 	#sort-complete-text {
 		font-size: 1rem;
 	}
+	#sort-complete-text {
+		margin-top: 5px;
+		font-size: 1rem;
+	}
 }
 
 @media (min-width: 60rem) {
@@ -485,6 +498,10 @@ export default {
 	#outer-container {
 		min-height: 400px;
 		min-width: 600px;
+	}
+	#sort-complete-text {
+		margin-top: 15px;
+		font-size: 1rem;
 	}
 }
 </style>

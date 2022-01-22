@@ -146,10 +146,13 @@ export default {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+
+	/* Fixes issues on mobile compared to vh/vw with scroll */
 	position: fixed;
 	top: 0;
 	bottom: 0;
-	width: 100vw;
+	left: 0;
+	right: 0;
 }
 #header-div {
 	height: 10%;
