@@ -1,5 +1,5 @@
 <template>
-	<div id="outer-container">
+	<div id="outer-container" :class="chosenStyling">
 		<h1 id="heading">{{ activeCard }} Sort</h1>
 		<ul id="description">
 			<li
@@ -111,6 +111,15 @@ export default {
 				: this.activeCard === "Selection"
 				? this.startSelectionSort
 				: this.startShellSort;
+		},
+		chosenStyling() {
+			return this.activeCard === "Bubble"
+				? "bubble-card"
+				: this.activeCard === "Insertion"
+				? "insertion-card"
+				: this.activeCard === "Selection"
+				? "selection-card"
+				: "shell-card";
 		},
 		chosenFocus() {
 			return this.activeCard === "Insertion"
@@ -280,16 +289,28 @@ export default {
 @import "../assets/styles/variables.css";
 
 #outer-container {
-	min-height: 375px;
-	min-width: 575px;
+	min-height: 400px;
+	min-width: 600px;
 	box-shadow: 2px 3px 10px var(--light-black);
 	padding: 10px;
 	border-radius: 15px;
 	text-align: center;
 	background-color: var(--white);
 }
+.bubble-card {
+	border: 5px solid var(--border-for-bubble);
+}
+.insertion-card {
+	border: 5px solid var(--border-for-insertion);
+}
+.selection-card {
+	border: 5px solid var(--border-for-selection);
+}
+.shell-card {
+	border: 5px solid var(--border-for-shell);
+}
 #heading {
-	text-decoration: underline;
+	font-size: 2rem;
 }
 #description {
 	text-align: left;
@@ -431,7 +452,7 @@ export default {
 		min-width: 575px;
 	}
 	#heading {
-		font-size: 2rem;
+		font-size: 2.2rem;
 	}
 	#description {
 		font-size: 1rem;
@@ -461,5 +482,9 @@ export default {
 
 @media (min-width: 60rem) {
 	/* 960 pixels */
+	#outer-container {
+		min-height: 400px;
+		min-width: 600px;
+	}
 }
 </style>

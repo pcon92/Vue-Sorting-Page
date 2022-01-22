@@ -14,4 +14,8 @@
 	--background-for-footer-area: #304455;
 	--vue-red: #f66;
 	--vue-orange: #ffa500;
+	--border-for-bubble: #5D8FBA;
+	--border-for-insertion: #BA885D;
+	--border-for-selection: #61BA5D;
+	--border-for-shell: #B75DBA;
 }

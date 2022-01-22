@@ -6,8 +6,8 @@
 			@remove-card="removeCard"
 		></the-header>
 	</div>
-	<transition-group name="card-transition" appear>
-		<div id="card-area-div" key="1">
+	<div id="card-area-div">
+		<transition-group name="card-transition" appear>
 			<sorting-card
 				v-for="activeCard in activeCards"
 				:key="activeCard.id"
@@ -17,8 +17,8 @@
 				:is-shown="activeCard.isShown"
 				class="sorting-card-component"
 			/>
-		</div>
-	</transition-group>
+		</transition-group>
+	</div>
 	<div id="footer-div">
 		<the-footer :name="name" :year="year" :links="links"></the-footer>
 	</div>
@@ -146,7 +146,9 @@ export default {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	height: 100vh;
+	position: fixed;
+	top: 0;
+	bottom: 0;
 	width: 100vw;
 }
 #header-div {

@@ -1,7 +1,7 @@
 <template>
 	<div id="outer-container">
 		<div class="card-options" id="top-options">
-			<p class="caption">Choose from:</p>
+			<p class="caption">Available:</p>
 			<li
 				v-for="card in cards"
 				:class="getAllCardsClass(card.name)"
@@ -12,7 +12,7 @@
 			</li>
 		</div>
 		<div class="card-options" id="bottom-options">
-			<p class="caption">Chosen cards:</p>
+			<p class="caption">Selected:</p>
 			<li
 				v-for="card in selectedCards"
 				class="card-div selected"
@@ -90,6 +90,8 @@ export default {
 	width: 150px;
 	font-weight: bold;
 	margin-left: 1%;
+	display: flex;
+	align-items: center;
 	color: var(--font-color-header-caption);
 }
 .card-options {
@@ -102,7 +104,7 @@ export default {
 	height: 55%;
 }
 .card-div {
-	width: 200px;
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -138,7 +140,7 @@ export default {
 	/* 320 pixels */
 	.caption {
 		width: 60px;
-		font-size: 0.8rem;
+		font-size: 0.7rem;
 		margin-right: 10px;
 	}
 	.card-div {
@@ -152,7 +154,7 @@ export default {
 	/* 320 pixels */
 	.caption {
 		width: 60px;
-		font-size: 0.8rem;
+		font-size: 0.7rem;
 		margin-right: 10px;
 	}
 	.card-div {
