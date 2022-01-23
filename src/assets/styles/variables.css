@@ -8,14 +8,14 @@
 	--light-grey: rgba(0, 0, 0, 0.1);
 	--light-green: rgba(0, 255, 0, 0.3);
 	--white: rgba(255, 255, 255, 1);
-	--background-for-card-area: #F6F6F6;
-	--background-for-header-area: #42B983;
-	--font-color-header-caption:#D6FFEC;
+	--background-for-card-area: #f6f6f6;
+	--background-for-header-area: #42b983;
+	--font-color-header-caption: #d6ffec;
 	--background-for-footer-area: #304455;
 	--vue-red: #f66;
 	--vue-orange: #ffa500;
-	--border-for-bubble: #5D8FBA;
-	--border-for-insertion: #BA885D;
-	--border-for-selection: #61BA5D;
-	--border-for-shell: #B75DBA;
+	--border-for-bubble: #5d8fba;
+	--border-for-insertion: #ba885d;
+	--border-for-selection: #61ba5d;
+	--border-for-shell: #b75dba;
 }

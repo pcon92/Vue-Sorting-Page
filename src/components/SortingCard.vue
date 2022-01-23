@@ -1,6 +1,9 @@
 <template>
 	<div id="outer-container" :class="chosenStyling">
 		<h1 id="heading">{{ activeCard }} Sort</h1>
+		<div id="close-button-div" @click="removeCard">
+			<i class="far fa-times-circle"></i>
+		</div>
 		<ul id="description">
 			<li
 				v-for="bullet in bulletPoints"
@@ -77,6 +80,7 @@ export default {
 			required: true,
 		},
 	},
+	emits: ["remove-card"],
 	data() {
 		return {
 			// JSON methods used to 'deep copy' array allowing reset to prop values
@@ -280,6 +284,12 @@ export default {
 				return (this.speed = 0.5);
 			}
 		},
+		removeCard() {
+			this.$emit("remove-card", this.activeCard);
+		},
+	},
+	updated() {
+		this.$el.scrollIntoView();
 	},
 };
 </script>
@@ -296,6 +306,7 @@ export default {
 	border-radius: 15px;
 	text-align: center;
 	background-color: var(--white);
+	position: relative;
 }
 .bubble-card {
 	border: 10px solid var(--border-for-bubble);
@@ -311,6 +322,15 @@ export default {
 }
 #heading {
 	font-size: 2rem;
+}
+#close-button-div {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+#close-button-div:hover {
+	transform: scale(1.1);
+	cursor: pointer;
 }
 #description {
 	text-align: left;

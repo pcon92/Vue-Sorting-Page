@@ -14,12 +14,12 @@
 		<div class="card-options" id="bottom-options">
 			<p class="caption">Selected:</p>
 			<li
-				v-for="card in selectedCards"
+				v-for="card in activeCards"
 				class="card-div selected"
 				:key="card.id"
-				@click="removeCard(card)"
+				@click="removeCard(card.name)"
 			>
-				{{ card }} Sort
+				{{ card.name }} Sort
 			</li>
 		</div>
 	</div>
@@ -32,31 +32,28 @@ export default {
 			type: Array,
 			required: true,
 		},
+		activeCards: {
+			type: Array,
+			required: true,
+		},
 	},
 	emits: ["add-card", "remove-card"],
 	data() {
-		return {
-			selectedCards: [],
-		};
+		return {};
 	},
 	methods: {
 		selectCard(name) {
 			if (!this.checkIfActive(name)) {
-				this.selectedCards.push(name);
 				this.$emit("add-card", name);
 			}
 		},
 		removeCard(name) {
 			if (this.checkIfActive(name)) {
-				const filteredCards = this.selectedCards.filter(
-					(card) => card !== name
-				);
-				this.selectedCards = filteredCards;
 				this.$emit("remove-card", name);
 			}
 		},
 		checkIfActive(name) {
-			const filteredCards = this.selectedCards.filter(
+			const filteredCards = this.activeCards.filter(
 				(card) => card === name
 			);
 			return filteredCards.length;
@@ -68,10 +65,6 @@ export default {
 				return "card-div unselected-active";
 			}
 		},
-	},
-	created() {
-		const defaultCards = this.cards.find((card) => card.isShown === true);
-		this.selectedCards.push(defaultCards.name);
 	},
 };
 </script>
@@ -118,20 +111,9 @@ export default {
 	border-radius: 5px;
 	opacity: 0.35;
 }
-.unselected-active:hover {
-	background-color: var(--vue-orange);
-	cursor: pointer;
-}
-.unselected-disabled:hover {
-	cursor: not-allowed;
-}
 .selected {
 	border: 1px solid var(--light-grey);
 	border-radius: 5px;
-}
-.selected:hover {
-	background-color: var(--vue-red);
-	cursor: pointer;
 }
 
 /* Media queries */
@@ -175,5 +157,16 @@ export default {
 
 @media (min-width: 60rem) {
 	/* 960 pixels */
+	.unselected-active:hover {
+		background-color: var(--vue-orange);
+		cursor: pointer;
+	}
+	.unselected-disabled:hover {
+		cursor: not-allowed;
+	}
+	.selected:hover {
+		background-color: var(--vue-red);
+		cursor: pointer;
+	}
 }
 </style>

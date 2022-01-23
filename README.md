@@ -14,6 +14,11 @@ Recent updates:
 -   Had problems using the branded package in Font Awesome (from npm install, unable to find github logo) so imported into index.html instead
 -   Styled in the same color scheme as Vue
 -   Added first mobile responsive CSS adjustments
+-   Add ability to remove card from card itself and to scroll to new card on create
+
+Bugs:
+
+-   After removing one card on mobile the next card is 'hovered' over
 
 ---
 

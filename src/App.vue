@@ -2,6 +2,7 @@
 	<div id="header-div">
 		<the-header
 			:cards="algorithms"
+			:activeCards="activeCards"
 			@add-card="addCard"
 			@remove-card="removeCard"
 		></the-header>
@@ -16,6 +17,7 @@
 				:bullet-points="activeCard.bulletPoints"
 				:is-shown="activeCard.isShown"
 				class="sorting-card-component"
+				@remove-card="removeCard"
 			/>
 		</transition-group>
 	</div>
@@ -121,12 +123,14 @@ export default {
 				(algorithm) => algorithm.name === name
 			);
 			this.activeCards.push(pickedCard);
+			console.log("e");
 		},
 		removeCard(name) {
 			const filteredCards = this.activeCards.filter(
 				(algorithm) => algorithm.name !== name
 			);
 			this.activeCards = filteredCards;
+			console.log("e");
 		},
 	},
 	created() {
