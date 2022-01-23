@@ -6,7 +6,7 @@
 				v-for="card in cards"
 				:class="getAllCardsClass(card.name)"
 				:key="card.id"
-				@click="selectCard(card.name)"
+				@click="addCard(card.name)"
 			>
 				{{ card.name }} Sort
 			</li>
@@ -42,7 +42,7 @@ export default {
 		return {};
 	},
 	methods: {
-		selectCard(name) {
+		addCard(name) {
 			if (!this.checkIfActive(name)) {
 				this.$emit("add-card", name);
 			}
@@ -54,7 +54,7 @@ export default {
 		},
 		checkIfActive(name) {
 			const filteredCards = this.activeCards.filter(
-				(card) => card === name
+				(card) => card.name === name
 			);
 			return filteredCards.length;
 		},

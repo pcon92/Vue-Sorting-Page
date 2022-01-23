@@ -123,14 +123,12 @@ export default {
 				(algorithm) => algorithm.name === name
 			);
 			this.activeCards.push(pickedCard);
-			console.log("e");
 		},
 		removeCard(name) {
 			const filteredCards = this.activeCards.filter(
 				(algorithm) => algorithm.name !== name
 			);
 			this.activeCards = filteredCards;
-			console.log("e");
 		},
 	},
 	created() {
