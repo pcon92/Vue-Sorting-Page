@@ -17,7 +17,6 @@
 				v-for="card in activeCards"
 				class="card-div selected"
 				:key="card.id"
-				@click="removeCard(card.name)"
 			>
 				{{ card.name }} Sort
 			</li>
@@ -105,7 +104,7 @@ export default {
 .unselected-active {
 	border: 1px solid var(--light-grey);
 	border-radius: 5px;
-	animation: unselectedActiveMove 3s infinite;
+	animation: unselectedActiveMove 1s infinite;
 }
 .unselected-disabled {
 	border: 1px solid var(--light-grey);
@@ -113,7 +112,7 @@ export default {
 	opacity: 0.35;
 }
 .selected {
-	border: 1px solid var(--light-grey);
+	border: 3px solid var(--light-grey);
 	border-radius: 5px;
 }
 
@@ -123,11 +122,11 @@ export default {
 		transform: translateY(0px);
 	}
 	40% {
-		transform: translateY(3px);
+		transform: translateY(4px);
 	}
 
 	60% {
-		transform: translateY(3px);
+		transform: translateY(4px);
 	}
 
 	100% {
@@ -182,10 +181,6 @@ export default {
 	}
 	.unselected-disabled:hover {
 		cursor: not-allowed;
-	}
-	.selected:hover {
-		background-color: var(--vue-red);
-		cursor: pointer;
 	}
 }
 </style>
