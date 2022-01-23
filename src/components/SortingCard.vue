@@ -89,7 +89,7 @@ export default {
 			numberOfSwaps: 0,
 			btnPressed: false,
 			isSorted: false,
-			speed: 1,
+			speed: 4,
 		};
 	},
 	computed: {
@@ -305,20 +305,23 @@ export default {
 	padding: 10px;
 	border-radius: 15px;
 	text-align: center;
-	background-color: var(--white);
 	position: relative;
 }
 .bubble-card {
 	border: 10px solid var(--border-for-bubble);
+	background-color: var(--background-for-bubble);
 }
 .insertion-card {
 	border: 10px solid var(--border-for-insertion);
+	background-color: var(--background-for-insertion);
 }
 .selection-card {
 	border: 10px solid var(--border-for-selection);
+	background-color: var(--background-for-selection);
 }
 .shell-card {
 	border: 10px solid var(--border-for-shell);
+	background-color: var(--background-for-shell);
 }
 #heading {
 	font-size: 2rem;

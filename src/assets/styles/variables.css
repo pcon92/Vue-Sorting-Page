@@ -14,8 +14,12 @@
 	--background-for-footer-area: #304455;
 	--vue-red: #f66;
 	--vue-orange: #ffa500;
-	--border-for-bubble: #5d8fba;
-	--border-for-insertion: #ba885d;
-	--border-for-selection: #61ba5d;
-	--border-for-shell: #b75dba;
+	--border-for-bubble: rgba(93, 143, 186, 0.8);
+	--background-for-bubble: rgba(93, 143, 186, 0.03);
+	--border-for-insertion: rgba(186, 136, 93, 0.8);
+	--background-for-insertion: rgba(186, 136, 93, 0.03);
+	--border-for-selection: rgba(97, 186, 93, 0.8);
+	--background-for-selection: rgba(97, 186, 93, 0.03);
+	--border-for-shell: rgba(183, 93, 186, 0.8);
+	--background-for-shell: rgba(183, 93, 186, 0.03);
 }

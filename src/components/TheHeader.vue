@@ -105,6 +105,7 @@ export default {
 .unselected-active {
 	border: 1px solid var(--light-grey);
 	border-radius: 5px;
+	animation: unselectedActiveMove 3s infinite;
 }
 .unselected-disabled {
 	border: 1px solid var(--light-grey);
@@ -114,6 +115,24 @@ export default {
 .selected {
 	border: 1px solid var(--light-grey);
 	border-radius: 5px;
+}
+
+/* Animations */
+@keyframes unselectedActiveMove {
+	0% {
+		transform: translateY(0px);
+	}
+	40% {
+		transform: translateY(3px);
+	}
+
+	60% {
+		transform: translateY(3px);
+	}
+
+	100% {
+		transform: translateY(0px);
+	}
 }
 
 /* Media queries */

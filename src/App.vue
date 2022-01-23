@@ -195,21 +195,21 @@ export default {
 @media (max-width: 20rem) {
 	/* 320 pixels */
 	.sorting-card-component {
-		margin: 10px 20px 10px 20px;
+		margin: 15px;
 	}
 }
 
 @media (min-width: 20rem) {
 	/* 320 pixels */
 	.sorting-card-component {
-		margin: 15px 25px 15px 25px;
+		margin: 15px;
 	}
 }
 
 @media (min-width: 40rem) {
 	/* 640 pixels */
 	.sorting-card-component {
-		margin: 25px;
+		margin: 15px;
 	}
 }
 
