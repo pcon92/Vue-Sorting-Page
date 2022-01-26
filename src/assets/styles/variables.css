@@ -9,17 +9,18 @@
 	--light-green: rgba(0, 255, 0, 0.3);
 	--white: rgba(255, 255, 255, 1);
 	--background-for-card-area: #f6f6f6;
-	--background-for-header-area: #42b983;
+	--background-for-header-area: rgba(66, 185, 131, 1);
+	--bottom-border-for-header-area: rgb(42, 110, 79, 0.8);
 	--font-color-header-caption: #d6ffec;
 	--background-for-footer-area: #304455;
 	--vue-red: #f66;
 	--vue-orange: #ffa500;
 	--border-for-bubble: rgba(93, 143, 186, 0.8);
-	--background-for-bubble: rgba(93, 143, 186, 0.03);
-	--border-for-insertion: rgba(186, 136, 93, 0.8);
-	--background-for-insertion: rgba(186, 136, 93, 0.03);
-	--border-for-selection: rgba(97, 186, 93, 0.8);
-	--background-for-selection: rgba(97, 186, 93, 0.03);
+	--background-for-bubble: rgba(93, 143, 186, 0.06);
+	--border-for-insertion: rgba(198, 201, 30, 0.8);
+	--background-for-insertion: rgba(198, 201, 30, 0.06);
+	--border-for-selection: rgba(241, 60, 30, 0.8);
+	--background-for-selection: rgba(241, 60, 30, 0.06);
 	--border-for-shell: rgba(183, 93, 186, 0.8);
-	--background-for-shell: rgba(183, 93, 186, 0.03);
+	--background-for-shell: rgba(183, 93, 186, 0.06);
 }

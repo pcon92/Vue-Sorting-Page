@@ -441,8 +441,8 @@ export default {
 @media (min-width: 20rem) {
 	/* 320 pixels */
 	#outer-container {
-		min-height: 260px;
-		min-width: 260px;
+		min-height: 250px;
+		min-width: 250px;
 	}
 	#heading {
 		font-size: 1.2rem;

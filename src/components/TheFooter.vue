@@ -65,7 +65,7 @@ export default {
 @media (max-width: 20rem) {
 	/* 320 pixels */
 	#links-div {
-		transform: scale(0.8);
+		transform: scale(0.75);
 	}
 	#footer-text {
 		font-size: 0.6rem;
@@ -76,7 +76,7 @@ export default {
 @media (min-width: 20rem) {
 	/* 320 pixels */
 	#links-div {
-		transform: scale(0.8);
+		transform: scale(0.75);
 	}
 	#footer-text {
 		font-size: 0.6rem;

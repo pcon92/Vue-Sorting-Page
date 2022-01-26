@@ -16,6 +16,7 @@
 			<li
 				v-for="card in activeCards"
 				class="card-div selected"
+				:class="getSelectedCardClass(card.name)"
 				:key="card.id"
 			>
 				{{ card.name }} Sort
@@ -64,6 +65,17 @@ export default {
 				return "card-div unselected-active";
 			}
 		},
+		getSelectedCardClass(name) {
+			if (name === "Bubble") {
+				return "bubble-card";
+			} else if (name === "Insertion") {
+				return "insertion-card";
+			} else if (name === "Selection") {
+				return "selection-card";
+			} else {
+				return "shell-card";
+			}
+		},
 	},
 };
 </script>
@@ -77,6 +89,8 @@ export default {
 	justify-content: space-between;
 	background-color: var(--background-for-header-area);
 	color: var(--white);
+	border-bottom: 5px solid var(--bottom-border-for-header-area);
+	box-sizing: border-box;
 }
 .caption {
 	width: 150px;
@@ -112,8 +126,20 @@ export default {
 	opacity: 0.35;
 }
 .selected {
-	border: 3px solid var(--light-grey);
+	border: 1px solid var(--light-grey);
 	border-radius: 5px;
+}
+.bubble-card {
+	border-top: 5px solid var(--border-for-bubble);
+}
+.insertion-card {
+	border-top: 5px solid var(--border-for-insertion);
+}
+.selection-card {
+	border-top: 5px solid var(--border-for-selection);
+}
+.shell-card {
+	border-top: 5px solid var(--border-for-shell);
 }
 
 /* Animations */
